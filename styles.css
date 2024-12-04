@@ -89,3 +89,43 @@ body {
     background: #f55530;
 }
 
+#history-wrap {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: none; /* Initially hidden */
+}
+
+#history-wrap h3 {
+    text-align: center;
+    color: #fff;
+}
+
+#history-list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#history-list li {
+    color: #ddd;
+    padding: 5px;
+    border-bottom: 1px solid #666;
+}
+
+#toggle-history, #clear-history {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    width: 100px;
+}
+
+#toggle-history:hover, #clear-history:hover {
+    background-color: #5d5d5f;
+}
