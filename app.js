@@ -1,5 +1,4 @@
 const input = document.getElementById("input");
-const tmp = document.getElementById("tmp");
 
 const empty = (element) => {
     element.innerText = "";
@@ -17,7 +16,7 @@ document.getElementById("clear").addEventListener("click", () => {
 document.querySelectorAll(".number").forEach((element) => {
     element.addEventListener("click", () => {
         if (input.innerText.length > 19)
-            return alert("최대 입력 범위를 초과했습니다!");
+            return alert("Kļūda");
 
         input.innerText += element.innerText;
     });
