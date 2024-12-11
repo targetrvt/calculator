@@ -1,19 +1,17 @@
 const input = document.getElementById("input");
 const tmp = document.getElementById("tmp");
 const historyList = document.getElementById("history-list");
-const historyWrap = document.getElementById("history-wrap"); // History section wrapper
+const historyWrap = document.getElementById("history-wrap");
 const toggleHistoryButton = document.getElementById("toggle-history");
 const clearHistoryButton = document.getElementById("clear-history");
 
-// Function to update the history in localStorage
 const updateHistory = (history) => {
     localStorage.setItem('history', JSON.stringify(history));
 };
 
-// Function to render the history list from localStorage
 const renderHistory = () => {
     const history = JSON.parse(localStorage.getItem('history')) || [];
-    historyList.innerHTML = ''; // Clear existing list before rendering
+    historyList.innerHTML = '';
     history.forEach((calc) => {
         const li = document.createElement("li");
         li.textContent = calc;
@@ -21,29 +19,25 @@ const renderHistory = () => {
     });
 };
 
-// Initial render of history when page loads
 renderHistory();
 
-// Toggle history visibility
 toggleHistoryButton.addEventListener("click", () => {
     if (historyWrap.style.display === "none" || historyWrap.style.display === "") {
-        historyWrap.style.display = "block"; // Show history section
-        toggleHistoryButton.innerText = "Hide History"; // Change button text
+        historyWrap.style.display = "block";
+        toggleHistoryButton.innerText = "Hide History";
     } else {
-        historyWrap.style.display = "none"; // Hide history section
-        toggleHistoryButton.innerText = "Show History"; // Change button text
+        historyWrap.style.display = "none";
+        toggleHistoryButton.innerText = "Show History";
     }
 });
 
-// Clear history
 clearHistoryButton.addEventListener("click", () => {
-    localStorage.removeItem('history'); // Remove history from localStorage
-    historyList.innerHTML = ''; // Clear the UI
-    historyWrap.style.display = "none"; // Optionally hide the history after clearing
-    toggleHistoryButton.innerText = "Show History"; // Reset the toggle button text
+    localStorage.removeItem('history');
+    historyList.innerHTML = '';
+    historyWrap.style.display = "none";
+    toggleHistoryButton.innerText = "Show History";
 });
 
-// Function to clear the input and temporary screen
 const empty = (element) => {
     element.innerText = "";
 };
@@ -59,22 +53,17 @@ document.getElementById("clear").addEventListener("click", () => {
 
 document.querySelectorAll(".number").forEach((element) => {
     element.addEventListener("click", () => {
-        // Limit input length
         if (input.innerText.length > 19) return alert("Input exceeds limit");
-
         input.innerText += element.innerText;
     });
 });
 
 document.getElementById("dot").addEventListener("click", () => {
-    // Prevent adding multiple dots
     if (input.innerText.includes(".")) return;
-
     input.innerText += ".";
 });
 
 document.getElementById("sign").addEventListener("click", () => {
-    // Toggle the sign of the current number
     if (input.innerText.startsWith("-")) {
         input.innerText = input.innerText.slice(1);
     } else {
@@ -82,7 +71,6 @@ document.getElementById("sign").addEventListener("click", () => {
     }
 });
 
-// Handle operations (divide, multiply, subtract, add)
 document.querySelectorAll(".amt").forEach((element) => {
     element.addEventListener("click", () => {
         if (input.innerText) {
@@ -92,36 +80,32 @@ document.querySelectorAll(".amt").forEach((element) => {
                 tmp.innerText = `${input.innerText} ${element.innerText}`;
             }
         } else if (tmp.innerText.slice(-1).match(/-|\+|\*|\//)) {
-            // Replace the last operator if necessary
             let string = tmp.innerText.slice(0, -1);
             string += element.innerText;
             tmp.innerText = string;
         }
-
         empty(input);
     });
 });
 
 document.getElementById("result").addEventListener("click", () => {
     if (input.innerText) {
-        // Perform the calculation and store the result
+        const equation = `${tmp.innerText} ${input.innerText}`;
+
         const result = eval(tmp.innerText + input.innerText);
+
         input.innerText = result;
 
-        // Save the calculation in history
         const history = JSON.parse(localStorage.getItem('history')) || [];
-        history.push(`${tmp.innerText} ${input.innerText} = ${result}`);
+        history.push(`${equation} = ${result}`);
 
-        // Limit history to 5 entries
         if (history.length > 5) {
-            history.shift(); // Remove the first item if history exceeds 5 items
+            history.shift(); 
         }
 
-        // Update history in localStorage and re-render it
         updateHistory(history);
         renderHistory();
 
-        // Clear the temporary screen
         empty(tmp);
     }
 });

@@ -18,6 +18,8 @@ body {
     background-image: url(mathematics.jpg);
     background-color: rgba(255,255,255,0.4);
     background-blend-mode: lighten;
+    flex-direction: column; 
+    height: 100vh
 }
 
 
@@ -94,7 +96,7 @@ body {
     padding: 10px;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    display: none; /* Initially hidden */
+    display: none; 
 }
 
 #history-wrap h3 {
