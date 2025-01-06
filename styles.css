@@ -32,7 +32,6 @@ body {
     padding: 25px;
     border-radius: 25px;
     background: linear-gradient(to bottom right, #404040, #0c0c0c);
-    overflow: visible; /* Allow sidebar to slide out */
 }
 
 /* Calculator input section */
@@ -98,10 +97,11 @@ body {
 }
 
 /* Sidebar styles */
+/* Sidebar styles */
 #sidebar {
     position: absolute;
     top: 0;
-    right: -120px; /* Fully outside the calculator */
+    right: -120px; /* Initially positioned off-screen */
     height: 100%;
     width: 120px;
     background: #333;
@@ -110,10 +110,18 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 0 10px 10px 0;
-    transition: right 0.3s ease-in-out;
-    z-index: -1; /* Ensure sidebar is above other content */
+    transition: transform 0.3s ease-in-out, visibility 0s 0.3s; /* Smooth transition */
+    visibility: hidden; /* Initially hidden */
 }
 
+/* Sidebar open state */
+#sidebar.open {
+    transform: translateX(0px); /* Bring the sidebar in to the right */
+    visibility: visible; /* Make it visible immediately */
+    transition: transform 0.3s ease-in-out, visibility 0s 0s; /* Transition visible state immediately */
+}
+
+/* Sidebar button styles */
 #sidebar button {
     margin: 10px 0;
     padding: 10px;
@@ -133,7 +141,7 @@ body {
 /* Sidebar toggle button */
 #sidebar-toggle {
     position: absolute;
-    right: 0; /* Positioned on the right side of the calculator */
+    right: 0px; /* Positioned on the right side of the calculator */
     top: 50%;
     transform: translate(50%, -50%); /* Adjust for the center of the button */
     background: #444;
@@ -142,7 +150,6 @@ body {
     border-radius: 50%;
     padding: 10px;
     cursor: pointer;
-    z-index: 2; /* Ensure toggle button is above the sidebar */
     transition: background 0.3s;
 }
 
@@ -150,11 +157,6 @@ body {
     background: #555;
 }
 
-
-/* Sidebar open state */
-#sidebar.open {
-    right: 0; /* Slide out */
-}
 
 /* Extra buttons section */
 #extra-buttons {
