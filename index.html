@@ -7,38 +7,51 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="calculator">
-        <div id="input-wrap">
-            <div id="tmp"></div>
-            <div id="input"></div>
-        </div>
-        <div id="button-wrap">
-            <button id="all-clear">AC</button>
-            <button id="clear">C</button>
-            <button id="sign">+/-</button>
-            <button class="amt divide">/</button>
-    
-            <button class="number">7</button>
-            <button class="number">8</button>
-            <button class="number">9</button>
-            <button class="amt times">*</button>
-    
-            <button class="number">4</button>
-            <button class="number">5</button>
-            <button class="number">6</button>
-            <button class="amt minus">-</button>
-    
-            <button class="number">1</button>
-            <button class="number">2</button>
-            <button class="number">3</button>
-            <button class="amt plus">+</button>
-    
-            <button class="number num-0">0</button>
-            <button id="dot">.</button>
-            <button id="result">=</button>
-        </div>
 
-        <div id="history-wrap" style="display: none; ">
+    <div id="calculator">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <button class="sidebar-btn" id="percent">%</button>
+            <button class="sidebar-btn" id="square">x²</button>
+            <button class="sidebar-btn" id="sqrt">√</button>
+            <button class="sidebar-btn" id="open-bracket">(</button>
+            <button class="sidebar-btn" id="close-bracket">)</button>
+        </div>
+    
+        <div id="calculator-content">
+            <!-- Calculator content -->
+            <div id="input-wrap">
+                <div id="tmp"></div>
+                <div id="input"></div>
+            </div>
+            <div id="button-wrap">
+                <!-- Existing calculator buttons -->
+                <button id="all-clear">AC</button>
+                <button id="clear">C</button>
+                <button id="sign">+/-</button>
+                <button class="amt divide">/</button>
+                <button class="number">7</button>
+                <button class="number">8</button>
+                <button class="number">9</button>
+                <button class="amt times">*</button>
+                <button class="number">4</button>
+                <button class="number">5</button>
+                <button class="number">6</button>
+                <button class="amt minus">-</button>
+                <button class="number">1</button>
+                <button class="number">2</button>
+                <button class="number">3</button>
+                <button class="amt plus">+</button>
+                <button class="number num-0">0</button>
+                <button id="dot">.</button>
+                <button id="result">=</button>
+            </div>
+        </div>
+        
+        <!-- Sidebar toggle button -->
+        <button id="sidebar-toggle">☰</button>
+
+        <div id="history-wrap" style="display: none;">
             <h3>History</h3>
             <ul id="history-list"></ul>
             <button id="clear-history">Clear History</button>
@@ -46,6 +59,7 @@
 
         <button id="toggle-history">Show History</button>
     </div>    
+
     <script src="app.js"></script>
 </body>
 </html>

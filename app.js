@@ -91,8 +91,7 @@ document.querySelectorAll(".amt").forEach((element) => {
 document.getElementById("result").addEventListener("click", () => {
     if (input.innerText) {
         const equation = `${tmp.innerText} ${input.innerText}`;
-
-        const result = eval(tmp.innerText + input.innerText);
+        const result = eval(tmp.innerText + input.innerText); // Be cautious with eval!
 
         input.innerText = result;
 
@@ -100,12 +99,72 @@ document.getElementById("result").addEventListener("click", () => {
         history.push(`${equation} = ${result}`);
 
         if (history.length > 5) {
-            history.shift(); 
+            history.shift();
         }
 
         updateHistory(history);
         renderHistory();
 
         empty(tmp);
+    }
+});
+
+// Add event listeners for extra buttons
+document.getElementById("percent").addEventListener("click", () => {
+    if (input.innerText) {
+        const percentValue = parseFloat(input.innerText) / 100;
+        const history = JSON.parse(localStorage.getItem('history')) || [];
+        history.push(`${input.innerText}% = ${percentValue}`);
+        updateHistory(history);
+        renderHistory();
+
+        input.innerText = percentValue;
+    }
+});
+
+document.getElementById("square").addEventListener("click", () => {
+    if (input.innerText) {
+        const squareValue = Math.pow(parseFloat(input.innerText), 2);
+        const history = JSON.parse(localStorage.getItem('history')) || [];
+        history.push(`${input.innerText}² = ${squareValue}`);
+        updateHistory(history);
+        renderHistory();
+
+        input.innerText = squareValue;
+    }
+});
+
+document.getElementById("sqrt").addEventListener("click", () => {
+    if (input.innerText) {
+        const sqrtValue = Math.sqrt(parseFloat(input.innerText));
+        const history = JSON.parse(localStorage.getItem('history')) || [];
+        history.push(`√${input.innerText} = ${sqrtValue}`);
+        updateHistory(history);
+        renderHistory();
+
+        input.innerText = sqrtValue;
+    }
+});
+
+document.getElementById("open-bracket").addEventListener("click", () => {
+    input.innerText += "(";
+});
+
+document.getElementById("close-bracket").addEventListener("click", () => {
+    input.innerText += ")";
+});
+
+const sidebar = document.getElementById("sidebar");
+const sidebarToggle = document.getElementById("sidebar-toggle");
+const calculatorContent = document.getElementById("calculator-content");
+
+sidebarToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    calculatorContent.classList.toggle("open");
+
+    if (sidebar.classList.contains("open")) {
+        sidebarToggle.innerText = "⟵"; // Change icon to indicate closing
+    } else {
+        sidebarToggle.innerText = "☰"; // Change icon to indicate opening
     }
 });
