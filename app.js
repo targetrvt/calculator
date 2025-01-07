@@ -91,7 +91,7 @@ document.querySelectorAll(".amt").forEach((element) => {
 document.getElementById("result").addEventListener("click", () => {
     if (input.innerText) {
         const equation = `${tmp.innerText} ${input.innerText}`;
-        const result = eval(tmp.innerText + input.innerText); // Be cautious with eval!
+        const result = eval(tmp.innerText + input.innerText);
 
         input.innerText = result;
 
@@ -109,7 +109,7 @@ document.getElementById("result").addEventListener("click", () => {
     }
 });
 
-// Add event listeners for extra buttons
+
 document.getElementById("percent").addEventListener("click", () => {
     if (input.innerText) {
         const percentValue = parseFloat(input.innerText) / 100;
@@ -163,8 +163,8 @@ sidebarToggle.addEventListener("click", () => {
     calculatorContent.classList.toggle("open");
 
     if (sidebar.classList.contains("open")) {
-        sidebarToggle.innerText = "⟵"; // Change icon to indicate closing
+        sidebarToggle.innerText = "⟵"; 
     } else {
-        sidebarToggle.innerText = "☰"; // Change icon to indicate opening
+        sidebarToggle.innerText = "☰";
     }
 });
