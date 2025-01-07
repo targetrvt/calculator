@@ -19,7 +19,7 @@ body {
     background-image: url(mathematics.jpg);
     background-color: rgba(255, 255, 255, 0.4);
     background-blend-mode: lighten;
-    flex-direction: row; /* Adjust direction to row to align extra buttons and calculator side by side */
+    flex-direction: row; 
     height: 100vh;
     gap: 20px; /* Space between buttons and calculator */
 }
@@ -110,32 +110,36 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 0 10px 10px 0;
-    transition: transform 0.3s ease-in-out, visibility 0s 0.3s; /* Smooth transition */
+    transition: transform 0.2s ease-in-out, visibility 0.1s, 0.1s; /* Smooth transition */
     visibility: hidden; /* Initially hidden */
 }
 
 /* Sidebar open state */
 #sidebar.open {
-    transform: translateX(0px); /* Bring the sidebar in to the right */
-    visibility: visible; /* Make it visible immediately */
-    transition: transform 0.3s ease-in-out, visibility 0s 0s; /* Transition visible state immediately */
+    transform: translateX(0px); 
+    visibility: visible; 
+    transition: transform 0.2s ease-in-out, visibility 0s;
 }
 
 /* Sidebar button styles */
 #sidebar button {
+    width: calc(50% - 4px);
+    text-align: center;
+    line-height: 5rem;
     margin: 10px 0;
-    padding: 10px;
-    width: 90%;
-    background: #444;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+    background: #5d5d5f;
+    color: #f1f1f1;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background 0.3s;
+    user-select: none;
+    transition: background 0.3s, box-shadow 0.3s;
+    border: none;
+    outline: 0;
 }
 
 #sidebar button:hover {
-    background: #555;
+    background: #434141;
+    box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
 }
 
 /* Sidebar toggle button */
